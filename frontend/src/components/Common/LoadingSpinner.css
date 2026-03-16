@@ -1,0 +1,234 @@
+/* LoadingSpinner.css - Fixed with transparent background and centered text */
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  width: 100%;
+  background: transparent; /* Make background transparent */
+  text-align: center;
+}
+
+.loading-container.fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7); /* Semi-transparent dark overlay */
+  backdrop-filter: blur(5px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.spinner {
+  width: 44px;
+  height: 44px;
+  border: 3px solid rgba(99, 102, 241, 0.2); /* Light border */
+  border-top-color: var(--student-primary, #6366f1);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 1rem auto;
+}
+
+.spinner.small {
+  width: 28px;
+  height: 28px;
+  border-width: 2px;
+  margin: 0;
+}
+
+.spinner.large {
+  width: 60px;
+  height: 60px;
+  border-width: 4px;
+}
+
+.loading-text {
+  color: var(--gray-300, #d1d5db);
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  margin: 0.5rem 0 0 0;
+  background: transparent;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+
+/* Initial Loader */
+.initial-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+}
+
+.initial-loader-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.initial-loader .spinner {
+  width: 52px;
+  height: 52px;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  border-top-color: white;
+  margin: 0 auto 1.5rem auto;
+}
+
+.initial-loader .loading-text {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+  background: transparent;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Chart Loader */
+.chart-loader {
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  background: transparent;
+}
+
+.chart-loader .spinner {
+  margin: 0 auto 1rem auto;
+}
+
+.chart-loader .loading-text {
+  color: var(--gray-400, #9ca3af);
+}
+
+/* Button Loader */
+.button-loader {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.5rem;
+}
+
+.button-loader .spinner {
+  width: 16px;
+  height: 16px;
+  border-width: 2px;
+  margin: 0;
+  border-color: rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+}
+
+/* Pulse Loader */
+.pulse-loader {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.pulse-dot {
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-radius: 50%;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.pulse-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.pulse-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+/* Progress Loader */
+.progress-loader {
+  width: 200px;
+  height: 4px;
+  background: rgba(99, 102, 241, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+  margin: 0 auto 1rem auto;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+  border-radius: 2px;
+  animation: progress 1.5s ease-in-out infinite;
+  width: 30%;
+}
+
+@keyframes progress {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(400%);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .initial-loader .spinner {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .initial-loader .loading-text {
+    font-size: 1.2rem;
+  }
+  
+  .loading-container {
+    min-height: 300px;
+  }
+}
+.edit-profile-btn{
+  background-color: #EB4C4C;
+  color: white;
+  padding:13px;
+}
+.logout-btn{
+   background-color:#FF7070;
+  color: white;
+  padding:13px;
+}
+
+

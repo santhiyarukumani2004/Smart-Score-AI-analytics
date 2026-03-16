@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Score AI - Icon Generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #202124;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            background: #2d2e30;
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid #3c4043;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+        
+        h1 {
+            color: #e8eaed;
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+        
+        .subtitle {
+            color: #9aa0a6;
+            font-size: 16px;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #3c4043;
+            padding-bottom: 20px;
+        }
+        
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .icon-card {
+            background: #35363a;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid #3c4043;
+            transition: transform 0.2s;
+        }
+        
+        .icon-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+        }
+        
+        canvas {
+            border-radius: 24px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+            margin: 0 auto 20px;
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .size-badge {
+            background: #4285F4;
+            color: white;
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 500;
+            margin: 15px 0;
+        }
+        
+        button {
+            background: transparent;
+            color: #e8eaed;
+            border: 1px solid #3c4043;
+            padding: 12px 24px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin: 5px;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        button.primary {
+            background: #4285F4;
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            font-size: 16px;
+        }
+        
+        button.primary:hover {
+            background: #5a95f5;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(66,133,244,0.3);
+        }
+        
+        button:hover {
+            background: #404144;
+        }
+        
+        .action-bar {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 30px 0;
+            padding: 20px 0;
+            border-top: 1px solid #3c4043;
+            border-bottom: 1px solid #3c4043;
+        }
+        
+        .steps {
+            background: #35363a;
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+        
+        .step-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            color: #e8eaed;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: #4285F4;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 18px;
+        }
+        
+        .success-message {
+            background: #34A85320;
+            border: 1px solid #34A853;
+            color: #34A853;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 20px 0;
+            display: none;
+        }
+        
+        .code-block {
+            background: #202124;
+            border-radius: 12px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        code {
+            color: #e8eaed;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 13px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 Smart Score AI</h1>
+        <div class="subtitle">PWA Icon Generator - No Downloads Needed</div>
+
+        <!-- Icon Preview Grid -->
+        <div class="icon-grid">
+            <div class="icon-card">
+                <canvas id="icon192" width="192" height="192"></canvas>
+                <div class="size-badge">192x192</div>
+                <div>
+                    <button onclick="downloadIcon('icon192', 'icon-192.png')">
+                        💾 Download 192px
+                    </button>
+                </div>
+            </div>
+            
+            <div class="icon-card">
+                <canvas id="icon512" width="512" height="512"></canvas>
+                <div class="size-badge">512x512</div>
+                <div>
+                    <button onclick="downloadIcon('icon512', 'icon-512.png')">
+                        💾 Download 512px
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Bar -->
+        <div class="action-bar">
+            <button class="primary" onclick="generateAllIcons()">
+                🚀 Auto-Generate Both Icons
+            </button>
+            <button onclick="copyManifest()">
+                📋 Copy Manifest
+            </button>
+            <button onclick="copyViteConfig()">
+                ⚡ Copy Vite Config
+            </button>
+        </div>
+
+        <div id="successMessage" class="success-message">
+            ✅ Icons generated successfully! Save them to your <code>/public</code> folder
+        </div>
+
+        <!-- Quick Setup Steps -->
+        <div class="steps">
+            <h3 style="color:#e8eaed; margin-bottom:20px;">📋 Quick Setup Steps</h3>
+            
+            <div class="step-item">
+                <span class="step-number">1</span>
+                <span>Click "Auto-Generate Both Icons" above</span>
+            </div>
+            
+            <div class="step-item">
+                <span class="step-number">2</span>
+                <span>Save both PNG files to your <code>/public</code> folder</span>
+            </div>
+            
+            <div class="step-item">
+                <span class="step-number">3</span>
+                <span>Copy the manifest.json below to root folder</span>
+            </div>
+            
+            <div class="step-item">
+                <span class="step-number">4</span>
+                <span>Update vite.config.js with PWA plugin</span>
+            </div>
+            
+            <div class="step-item">
+                <span class="step-number">5</span>
+                <span>Run <code>npm run build</code> and deploy!</span>
+            </div>
+        </div>
+
+        <!-- Manifest Code -->
+        <div class="code-block">
+            <h4 style="color:#e8eaed; margin-bottom:10px;">📄 manifest.json</h4>
+            <code id="manifestCode">
+{
+  "name": "Smart Score AI",
+  "short_name": "Smart Score",
+  "description": "AI-powered exam analytics dashboard",
+  "theme_color": "#4285F4",
+  "background_color": "#202124",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
+            </code>
+        </div>
+
+        <!-- Vite Config Code -->
+        <div class="code-block">
+            <h4 style="color:#e8eaed; margin-bottom:10px;">⚡ vite.config.js</h4>
+            <code id="viteConfigCode">
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import { VitePWA } from 'vite-plugin-pwa'
+
+export default defineConfig({
+  plugins: [
+    react(),
+    VitePWA({
+      registerType: 'autoUpdate',
+      includeAssets: ['icon-192.png', 'icon-512.png'],
+      manifest: {
+        name: 'Smart Score AI',
+        short_name: 'Smart Score',
+        description: 'AI-powered exam analytics dashboard',
+        theme_color: '#4285F4',
+        background_color: '#202124',
+        display: 'standalone',
+        icons: [
+          {
+            src: '/icon-192.png',
+            sizes: '192x192',
+            type: 'image/png'
+          },
+          {
+            src: '/icon-512.png',
+            sizes: '512x512',
+            type: 'image/png'
+          }
+        ]
+      }
+    })
+  ]
+})
+            </code>
+        </div>
+    </div>
+
+    <script>
+        // Draw icons with Smart Score AI branding
+        function drawIcon(canvasId, size) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, size, size);
+            
+            // Background gradient
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#4285F4');
+            gradient.addColorStop(0.5, '#5a95f5');
+            gradient.addColorStop(1, '#34A853');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, size, size);
+            
+            // Draw chart grid
+            ctx.strokeStyle = 'rgba(255,255,255,0.15)';
+            ctx.lineWidth = size/96;
+            
+            for(let i = 1; i <= 3; i++) {
+                ctx.beginPath();
+                ctx.moveTo(size * 0.2, size * (0.2 + i * 0.15));
+                ctx.lineTo(size * 0.8, size * (0.2 + i * 0.15));
+                ctx.stroke();
+            }
+            
+            // Draw bars
+            const barColors = ['#EA4335', '#FBBC05', '#34A853'];
+            for(let i = 0; i < 3; i++) {
+                ctx.fillStyle = barColors[i];
+                const barHeight = size * (0.15 + i * 0.1);
+                ctx.fillRect(
+                    size * (0.25 + i * 0.18),
+                    size * 0.7 - barHeight,
+                    size * 0.1,
+                    barHeight
+                );
+            }
+            
+            // Draw "AI" text
+            ctx.font = `bold ${size*0.15}px 'Poppins', Arial`;
+            ctx.fillStyle = 'white';
+            ctx.fillText('AI', size * 0.68, size * 0.28);
+            
+            // Draw "SMART SCORE" text
+            ctx.font = `bold ${size*0.08}px 'Poppins', Arial`;
+            ctx.fillStyle = 'rgba(255,255,255,0.9)';
+            ctx.fillText('SMART', size * 0.25, size * 0.85);
+            ctx.fillText('SCORE', size * 0.25, size * 0.93);
+            
+            // Draw corner accent
+            ctx.fillStyle = 'rgba(255,255,255,0.1)';
+            ctx.beginPath();
+            ctx.arc(size * 0.85, size * 0.15, size * 0.1, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        // Download icon
+        function downloadIcon(canvasId, filename) {
+            const canvas = document.getElementById(canvasId);
+            
+            // Redraw for quality
+            if(canvasId === 'icon192') drawIcon('icon192', 192);
+            else drawIcon('icon512', 512);
+            
+            canvas.toBlob(function(blob) {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                document.getElementById('successMessage').style.display = 'block';
+                setTimeout(() => {
+                    document.getElementById('successMessage').style.display = 'none';
+                }, 3000);
+            }, 'image/png');
+        }
+
+        // Generate both icons
+        function generateAllIcons() {
+            downloadIcon('icon192', 'icon-192.png');
+            setTimeout(() => {
+                downloadIcon('icon512', 'icon-512.png');
+            }, 500);
+        }
+
+        // Copy manifest to clipboard
+        function copyManifest() {
+            const manifestText = `{
+  "name": "Smart Score AI",
+  "short_name": "Smart Score",
+  "description": "AI-powered exam analytics dashboard",
+  "theme_color": "#4285F4",
+  "background_color": "#202124",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}`;
+            navigator.clipboard.writeText(manifestText);
+            alert('✅ Manifest copied to clipboard!');
+        }
+
+        // Copy vite config
+        function copyViteConfig() {
+            const configText = `import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import { VitePWA } from 'vite-plugin-pwa'
+
+export default defineConfig({
+  plugins: [
+    react(),
+    VitePWA({
+      registerType: 'autoUpdate',
+      includeAssets: ['icon-192.png', 'icon-512.png'],
+      manifest: {
+        name: 'Smart Score AI',
+        short_name: 'Smart Score',
+        description: 'AI-powered exam analytics dashboard',
+        theme_color: '#4285F4',
+        background_color: '#202124',
+        display: 'standalone',
+        icons: [
+          {
+            src: '/icon-192.png',
+            sizes: '192x192',
+            type: 'image/png'
+          },
+          {
+            src: '/icon-512.png',
+            sizes: '512x512',
+            type: 'image/png'
+          }
+        ]
+      }
+    })
+  ]
+})`;
+            navigator.clipboard.writeText(configText);
+            alert('✅ Vite config copied to clipboard!');
+        }
+
+        // Initialize icons
+        window.onload = function() {
+            drawIcon('icon192', 192);
+            drawIcon('icon512', 512);
+        };
+    </script>
+</body>
+</html>

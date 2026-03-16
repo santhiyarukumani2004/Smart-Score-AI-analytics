@@ -1,0 +1,398 @@
+/* DecisionTree.css */
+
+.decision-tree-container {
+  background: var(--gray-800, #1f2937);
+  border-radius: 16px;
+  padding: 1.5rem;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  width: 100%;
+  min-height: 600px;
+  overflow-x: auto;
+}
+
+.chart-title {
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--gray-700, #374151);
+}
+
+/* Legend */
+.tree-legend {
+  background: var(--gray-900, #111827);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.legend-title {
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.75rem;
+}
+
+.legend-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--gray-300, #d1d5db);
+  font-size: 0.9rem;
+}
+
+.color-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+/* Controls */
+.tree-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+  background: var(--gray-900, #111827);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.filter-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.filter-controls label {
+  color: var(--gray-300, #d1d5db);
+  font-weight: 500;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  background: var(--gray-700, #374151);
+  color: var(--gray-300, #d1d5db);
+}
+
+.filter-btn:hover {
+  transform: translateY(-2px);
+}
+
+.filter-btn.active {
+  background: #3b82f6;
+  color: white;
+}
+
+.filter-btn.hard.active {
+  background: #ef4444;
+}
+
+.filter-btn.medium.active {
+  background: #f59e0b;
+}
+
+.filter-btn.easy.active {
+  background: #10b981;
+}
+
+.zoom-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.zoom-controls button {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: none;
+  background: var(--gray-700, #374151);
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.zoom-controls button:hover {
+  background: #3b82f6;
+}
+
+.zoom-controls span {
+  min-width: 50px;
+  text-align: center;
+  color: var(--gray-300, #d1d5db);
+}
+
+.expand-all, .collapse-all {
+  width: auto !important;
+  padding: 0 1rem !important;
+  font-size: 0.9rem !important;
+  background: var(--gray-600, #4b5563) !important;
+}
+
+.expand-all:hover, .collapse-all:hover {
+  background: #3b82f6 !important;
+}
+
+/* Tree Visualization */
+.tree-visualization {
+  padding: 2rem 1rem;
+  min-width: 800px;
+  transition: transform 0.2s ease;
+}
+
+/* Tree Node */
+.tree-node-wrapper {
+  position: relative;
+  margin: 0.5rem 0;
+}
+
+.tree-node-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Connection lines */
+.node-connector {
+  position: absolute;
+  left: -30px;
+  top: 50%;
+  width: 30px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gray-500, #6b7280));
+}
+
+/* Node styling */
+.tree-node {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 2px solid transparent;
+  min-width: 150px;
+  position: relative;
+}
+
+.tree-node:hover {
+  transform: translateX(5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+}
+
+.parent-node {
+  color: white;
+  border-color: #2563eb;
+}
+
+.leaf-node {
+  color: white;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.node-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.node-name {
+  font-weight: 500;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+.node-difficulty {
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  min-width: 45px;
+  text-align: center;
+}
+
+.expand-icon {
+  font-size: 0.8rem;
+  opacity: 0.8;
+  margin-left: 0.25rem;
+}
+
+/* Difficulty badge */
+.difficulty-badge {
+  position: absolute;
+  right: -60px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: white;
+  white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Children container */
+.tree-children {
+  margin-left: 40px;
+  padding-left: 20px;
+  border-left: 2px dashed var(--gray-600, #4b5563);
+  position: relative;
+}
+
+/* Instructions */
+.tree-instructions {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: var(--gray-900, #111827);
+  border-radius: 8px;
+  border-left: 4px solid #3b82f6;
+}
+
+.tree-instructions p {
+  color: var(--gray-300, #d1d5db);
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+.tree-instructions strong {
+  color: white;
+}
+
+/* Loading State */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  text-align: center;
+  color: var(--gray-400, #9ca3af);
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid var(--gray-700, #374151);
+  border-top-color: #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Error State */
+.error-container {
+  text-align: center;
+  padding: 3rem;
+  background: var(--gray-900, #111827);
+  border-radius: 12px;
+}
+
+.error-message {
+  color: #ef4444;
+  margin-bottom: 1rem;
+}
+
+.retry-btn {
+  padding: 0.75rem 2rem;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.retry-btn:hover {
+  background: #2563eb;
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tree-controls {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .filter-controls {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+  
+  .filter-buttons {
+    width: 100%;
+  }
+  
+  .filter-btn {
+    flex: 1;
+  }
+  
+  .zoom-controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .tree-node {
+    min-width: 120px;
+    padding: 0.5rem 0.8rem;
+  }
+  
+  .node-name {
+    max-width: 100px;
+  }
+  
+  .difficulty-badge {
+    position: static;
+    transform: none;
+    margin-left: 0.5rem;
+  }
+  
+  .legend-items {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}

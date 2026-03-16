@@ -1,0 +1,150 @@
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#4285F4" />
+    <meta name="description" content="Smart Score AI - Exam Analytics Dashboard" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/icon-192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <meta name="application-name" content="Smart Score AI" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Smart Score" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <title>Smart Score AI</title>
+</head>
+<body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+   
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('Service Worker registered: ', registration);
+                        
+        
+                        registration.addEventListener('updatefound', () => {
+                            const newWorker = registration.installing;
+                            console.log('New service worker installing...');
+                            
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    console.log('New version available!');
+                                }
+                            });
+                        });
+                    })
+                    .catch(error => {
+                        console.log('Service Worker registration failed: ', error);
+                    });
+            });
+            
+            // Handle offline/online status
+            window.addEventListener('online', () => {
+                console.log('App is online');
+                document.body.classList.remove('offline');
+            });
+            
+            window.addEventListener('offline', () => {
+                console.log('App is offline');
+                document.body.classList.add('offline');
+            });
+        } else {
+            console.log('Service workers are not supported.');
+        }
+        
+        // Check if app is installed
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+            console.log('App is running in standalone mode');
+            document.body.classList.add('pwa-mode');
+        }
+    </script>
+    
+    <style>
+        .offline-banner {
+            display: none;
+            background: #EA4335;
+            color: white;
+            text-align: center;
+            padding: 8px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+        }
+        
+        .offline .offline-banner {
+            display: block;
+        }
+        
+        body.pwa-mode {
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+    
+    <div class="offline-banner">
+        📴 You are offline - using cached data
+    </div>
+</body>
+</html> -->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#4285F4" />
+    <meta name="description" content="Smart Score AI - Exam Analytics Dashboard" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" href="/icon-192.png" />
+    
+    <!-- Mobile App Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Smart Score" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <title>Smart Score AI</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    
+    <script type="module" src="/src/main.jsx"></script>
+    
+    <script>
+      // Register Service Worker
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js')
+            .then(reg => console.log('✅ PWA Service Worker registered'))
+            .catch(err => console.log('❌ PWA Service Worker error:', err));
+        });
+      }
+      
+      // Detect if running as PWA
+      if (window.matchMedia('(display-mode: standalone)').matches) {
+        console.log('📱 Running as installed PWA');
+        document.body.classList.add('pwa-mode');
+      }
+    </script>
+  </body>
+</html>

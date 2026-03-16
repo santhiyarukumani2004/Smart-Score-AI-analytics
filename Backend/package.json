@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "react-force-graph": "^1.48.2",
+    "workbox-webpack-plugin": "^7.4.0"
+  },
+  "devDependencies": {
+    "vite-plugin-pwa": "^1.2.0",
+    "workbox-window": "^7.4.0"
+  }
+}
