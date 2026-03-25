@@ -38,13 +38,18 @@ logger = logging.getLogger(__name__)
 # -----------------------------
 def get_db_connection():
     try:
-        conn = psycopg2.connect(
-            host="localhost",
-            database="exam_ai_db",
-            user="postgres",
-            password="password",
-            cursor_factory=psycopg2.extras.RealDictCursor
-        )
+        DATABASE_URL = os.environ.get("DATABASE_URL")
+        if DATABASE_URL:
+            conn = psycopg2.connect(DATABASE_URL, cursor_factory=psycopg2.extras.RealDictCursor)
+        else:
+            # fallback for local (safe)
+            conn = psycopg2.connect(
+                host="localhost",
+                database="exam_ai_db",
+                user="postgres",
+                password="password",
+                cursor_factory=psycopg2.extras.RealDictCursor
+            )
         return conn
     except Exception as e:
         logger.error(f"Database connection error: {e}")
