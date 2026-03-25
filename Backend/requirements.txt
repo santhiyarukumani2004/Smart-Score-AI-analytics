@@ -4,9 +4,9 @@ wheel
 Flask==2.3.3
 Flask-CORS==4.0.0
 Flask-SQLAlchemy==3.0.5
-psycopg2-binary==2.9.9
+psycopg2-binary==2.9.11  
 numpy==2.1.0
-pandas==2.2.2
+pandas==3.0.0
 matplotlib==3.9.0
 python-dotenv==1.0.1
 gunicorn==21.2.0
