@@ -1,6 +1,49 @@
 # Smart Score AI 🚀
 
 An AI-powered exam analytics dashboard for teachers and students, built with React and Vite.
+# Student Performance Prediction
+
+## Project Overview
+
+This project predicts student academic performance using Machine Learning.
+
+## Technologies Used
+
+- Python
+- Pandas
+- NumPy
+- Scikit-learn
+- Matplotlib
+- Jupyter Notebook
+
+## Project Screenshots
+
+### Home Page
+![Home Page](screenshots/home.png)
+
+### Dashboard
+![Dashboard](screenshots/dashboard.png)
+
+### Prediction Result
+![Prediction Result](screenshots/prediction.png)
+
+## Project Features
+
+- Data preprocessing
+- Exploratory Data Analysis
+- Machine Learning model
+- Performance evaluation
+- Prediction results
+
+## How to Run
+
+1. Clone this repository.
+2. Install the required libraries.
+3. Run the Python/Jupyter Notebook files.
+
+## Author
+
+Santhiya G.
 
 ## ✨ Features
 
